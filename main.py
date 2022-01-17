@@ -27,8 +27,8 @@ df = df[1:]
 # 放入新hearder
 df.columns = new_headers
 df_drop_name = df.drop(['證券代號', '證券名稱'], axis=1)
-# print(df_drop_name)
-raw_data = df_drop_name[1:]
+raw_data = df_drop_name
+# print(raw_data)
 data_array = np.asarray(raw_data)
 # print(data_array)
 
@@ -36,5 +36,6 @@ data_array = np.asarray(raw_data)
 cluster = KMeans(n_clusters=10)
 cluster.fit(data_array)
 # print(result)
-df['labels'] = cluster.labels_
+df['分群標籤'] = cluster.labels_
 print(df)
+df.to_csv("台股分群_0117.csv", header=True)
